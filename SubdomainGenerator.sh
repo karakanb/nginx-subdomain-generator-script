@@ -1,5 +1,4 @@
-
-#!/usr/bin/env bash
+#!/bin/bash
 #
 # Nginx Bash script for generating new subdomain with a new server block.
 
