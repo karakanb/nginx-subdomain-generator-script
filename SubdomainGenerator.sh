@@ -68,12 +68,11 @@ chown -R $USER:$WEB_USER $WEB_DIR/$1
 ln -s $NGINX_AVAILABLE_VHOSTS/$1 $NGINX_ENABLED_VHOSTS/$1
 
 # Restart
-echo "A restart to Nginx is required for the subdomain to be defined. Do you wish to restart nginx?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) /etc/init.d/nginx restart ; break;;
-        No ) exit;;
-    esac
-done
+
+read -p "A restart to Nginx is required for the subdomain to be defined. Do you wish to restart nginx? (y/n): " prompt
+if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
+then
+  /etc/init.d/nginx restart;
+fi
 
 ok "Subdomain is created for $1."
